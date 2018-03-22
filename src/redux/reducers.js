@@ -1,12 +1,15 @@
 import {combineReducers} from 'redux';
 import {LOGGED_IN, LOGGED_OUT} from './actions'
 
-function authorised(state = false, action) {
+function authorised(state = {
+    authState: false,
+    authDetails: null
+}, action) {
     switch (action.type) {
         case LOGGED_IN:
-            return true;
+            return {...state, authDetails: action.details, authState: true};
         case LOGGED_OUT:
-            return false;
+            return {...state, authDetails: null, authState: false};
         default:
             return state;
     }

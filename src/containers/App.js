@@ -1,29 +1,27 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux';
-
-const LoginComponent = (props) => (<div>test</div>);
+import {Route, Switch, Redirect, withRouter} from 'react-router-dom';
+import LoginComponent from './login';
 
 class App extends Component {
     render() {
-        return <LoginComponent {...this.props}/>
-        // return (
-        //   <div className="App">
-        //     <header className="App-header">
-        //       <img src={logo} className="App-logo" alt="logo" />
-        //       <h1 className="App-title">Welcome to React</h1>
-        //     </header>
-        //     <p className="App-intro">
-        //       To get started, edit <code>src/App.js</code> and save to reload.
-        //     </p>
-        //   </div>
-        // );
+        const {authorised} = this.props;
+        return (<Switch>
+            <Route path='/login' component={LoginComponent}/>
+            <Route path='/logged' render={()=><div>logged</div>} />
+            <Route path='/home' render={()=><div>home</div>} />
+            <Route path='/profile' render={()=><div>{authorised.authDetails}</div>} />
+            <Route path='/admin' render={()=><div>admin</div>} />
+            <Route exact path='/' render={()=>{
+                return (authorised.authState ? (<Redirect to="/profile"/>): (<LoginComponent/>))
+            }}/>
+        </Switch>)
     }
 }
 
 function mapStateToProps(state){
-    return {...state};
+    return {authorised: {...state.authorised}};
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
