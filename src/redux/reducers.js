@@ -3,13 +3,12 @@ import {LOGGED_IN, LOGGED_OUT} from './actions'
 
 function authorised(state = {
     authState: false,
-    authDetails: null
 }, action) {
     switch (action.type) {
         case LOGGED_IN:
-            return {...state, authDetails: action.details, authState: true};
+            return {...state, authState: true, ...action.payload};
         case LOGGED_OUT:
-            return {...state, authDetails: null, authState: false};
+            return {authState: false};
         default:
             return state;
     }
