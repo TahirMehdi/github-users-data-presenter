@@ -12,8 +12,6 @@ const clientData = {
     redirectUri: 'http://localhost:3000/logged'
 };
 
-
-
 class LoginComponent extends Component {
     render() {
         const {dispatch} = this.props;
