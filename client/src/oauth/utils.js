@@ -27,3 +27,25 @@ export function toQuery(params, delimiter = '&') {
         return query;
     }, '');
 }
+
+export function safeJsonStringify(json) {
+    let response;
+    try {
+        response = JSON.stringify(json)
+    } catch (e) {
+        console.warn('safeJsonStringify', e);
+        response = '';
+    }
+    return response;
+}
+
+export function safeJsonParse(json) {
+    let response;
+    try {
+        response = JSON.parse(json)
+    } catch (e) {
+        console.warn('safeJsonParse', e);
+        response = {};
+    }
+    return response;
+}
