@@ -80,6 +80,10 @@ app.get('/login', function(req, res){
     res.render('login', { user: req.user });
 });
 
+app.get('/api/login', function(req, res){
+    res.redirect('/auth/github');
+});
+
 // GET /auth/github
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in GitHub authentication will involve redirecting

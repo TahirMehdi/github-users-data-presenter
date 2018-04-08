@@ -27,6 +27,7 @@ class App extends Component {
             <PrivateRoute path='/home' component={HomeComponent} />
             <Route path='/profile' render={()=><div>{authorised}</div>} />
             <PrivateRoute path='/admin' component={TestComponent} />
+            <Route path='/' render={()=><div>hey guys this is '/' path</div>}/>
             {/*<Route exact path='/' render={()=>{*/}
                 {/*return (authorised.authState ? (<Redirect to="/profile"/>): (<LoginComponent/>))*/}
             {/*}}/>*/}
