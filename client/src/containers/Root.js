@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {createStore} from 'redux';
-import combinedReducers from '../redux/reducers'
 import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom';
+import configureStore from '../redux/configureStore'
 import App from './App';
 
-const store = createStore(combinedReducers);
+const store = configureStore();
+
 export default class Root extends Component {
     render() {
         return (

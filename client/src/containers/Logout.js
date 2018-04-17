@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {LOGOUT} from '../redux/actions';
+import {logout} from '../redux/actions';
 import {Redirect} from 'react-router-dom';
 
 class LogoutComponent extends Component{
@@ -9,7 +9,7 @@ class LogoutComponent extends Component{
         const {authorised} = this.props;
         const {from} = this.props.location.state;
         return authorised.authState
-            ? dispatch(LOGOUT())
+            ? dispatch(logout())
             : <Redirect to={from}/>
     }
 
